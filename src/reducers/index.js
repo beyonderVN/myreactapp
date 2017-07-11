@@ -15,34 +15,39 @@ function user(state = 'admin', action) {
     return state
 }
 
-// // Updates the pagination data for different actions.
-// const pagination = combineReducers({
-//     starredByUser: paginate({
-//         mapActionToKey: action => action.login,
-//         types: [
-//             ActionTypes.STARRED.REQUEST,
-//             ActionTypes.STARRED.SUCCESS,
-//             ActionTypes.STARRED.FAILURE
-//         ]
-//     }),
-//     stargazersByRepo: paginate({
-//         mapActionToKey: action => action.fullName,
-//         types: [
-//             ActionTypes.STARGAZERS.REQUEST,
-//             ActionTypes.STARGAZERS.SUCCESS,
-//             ActionTypes.STARGAZERS.FAILURE
-//         ]
-//     })
-// })
+const productTypeIds = (state = [], action) => {
+    if (action.type === ActionTypes.PRODUCT_TYPE.SUCCESS) {
+        console.log(action.response.result);
+        return [...state, ...action.response.result]
+    }
+    return state
+}
+
+// Updates the pagination data for different actions.
+const pagination = combineReducers({
+    productListByType: paginate({
+        mapActionToKey: action => action.productType,
+        types: [
+            ActionTypes.PRODUCT.REQUEST,
+            ActionTypes.PRODUCT.SUCCESS,
+            ActionTypes.PRODUCT.FAILURE
+        ]
+    })
+})
 const rootReducer = combineReducers({
     entities,
     user,
+    productTypeIds,
+    pagination
     // pagination
-
 })
 
 export default rootReducer
 // selector
 export const getProductTypes = (state) => {
     return state.entities.productTypes
+}
+
+export const getProductListByType = (state, productType) => {
+    return state.pagination.productListByType[productType] || {}
 }

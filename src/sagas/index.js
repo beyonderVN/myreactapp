@@ -1,7 +1,7 @@
 import { take, put, call, fork, select, all } from 'redux-saga/effects'
 import { api } from '../services'
 import * as actions from '../actions'
-import { getProductTypes } from '../reducers'
+import { getProductTypes, getProductListByType } from '../reducers'
 import _ from 'lodash'
 
 /***************************** Subroutines ************************************/
@@ -25,17 +25,24 @@ function* fetchEntity(entity, apiFn, id, url) {
 
 // yeah! we can also bind Generators
 export const fetchProductTypes = fetchEntity.bind(null, actions.productType, api.fetchProductTypeList)
+export const fetchProductListbyType = fetchEntity.bind(null, actions.product, api.fetchProductListbyType)
+
 
 // load user unless it is cached
 function* loadProductTypes(login, requiredFields) {
     const productTypes = yield select(getProductTypes, login)
-    console.log('productTypes', productTypes);
     if (!productTypes || _.isEmpty(productTypes)) {
-        console.log('!productTypes', !productTypes);
         yield call(fetchProductTypes, login)
     }
 }
 
+function* loadProductListByType(requiredFields) {
+    const productListByType = yield select(getProductListByType, requiredFields)
+
+    if (!productListByType || _.isEmpty(productListByType)) {
+        yield call(fetchProductListbyType, requiredFields)
+    }
+}
 /******************************************************************************/
 /******************************* WATCHERS *************************************/
 /******************************************************************************/
@@ -45,12 +52,21 @@ function* loadProductTypes(login, requiredFields) {
 function* watchLoadUserPage() {
     while (true) {
         const { login, requiredFields = [] } = yield take(actions.LOAD_APP)
-        console.log("login", login);
         yield fork(loadProductTypes, login, requiredFields)
     }
 }
+
+function* watchProductListByTypePage() {
+    while (true) {
+        const { login, requiredFields = [] } = yield take(actions.LOAD_PRODUCT_LIST_BY_TYPE)
+        yield fork(loadProductListByType, requiredFields)
+    }
+}
+
 export default function* root() {
     yield all([
-        fork(watchLoadUserPage)
+        fork(watchLoadUserPage),
+        fork(watchProductListByTypePage)
+
     ])
 }

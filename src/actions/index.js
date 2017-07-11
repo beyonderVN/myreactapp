@@ -11,8 +11,10 @@ function createRequestTypes(base) {
 
 export const PRODUCT_TYPE = createRequestTypes('PRODUCT_TYPE')
 export const PRODUCT = createRequestTypes('PRODUCT')
+export const STARRED = createRequestTypes('STARRED')
 
 export const LOAD_APP = 'LOAD_APP'
+export const LOAD_PRODUCT_LIST_BY_TYPE = 'LOAD_PRODUCT_LIST_BY_TYPE'
 
 function action(type, payload = {}) {
     return { type, ...payload }
@@ -25,9 +27,11 @@ export const productType = {
 }
 
 export const product = {
-    request: fullName => action(PRODUCT[REQUEST], { fullName }),
-    success: (fullName, response) => action(PRODUCT[SUCCESS], { fullName, response }),
-    failure: (fullName, error) => action(PRODUCT[FAILURE], { fullName, error }),
+    request: productType => action(PRODUCT[REQUEST], { productType }),
+    success: (productType, response) => action(PRODUCT[SUCCESS], { productType, response }),
+    failure: (productType, error) => action(PRODUCT[FAILURE], { productType, error }),
 }
 
+
 export const loadApp = (login, requiredFields = []) => action(LOAD_APP, { login, requiredFields })
+export const loadProductListbyType = (login, requiredFields = []) => action(LOAD_PRODUCT_LIST_BY_TYPE, { login, requiredFields })

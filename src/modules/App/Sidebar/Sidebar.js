@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
+import _ from 'lodash'
+import { Link } from 'react-router-dom'
 const SideBar = React.createClass({
     _handleSpy(event) {
 
@@ -41,7 +42,6 @@ const SideBar = React.createClass({
     render() {
         // console.log(this.props); 
         const { productTypes } = this.props
-        console.log(productTypes);
         return (
             <nav className="w3-sidebar w3-collapse w3-animate-left w3-card-4 scrollbar style-3  main-sidebar " style={{ zIndex: '10' }} id="mySidebar">
                 <div className="main-sidebar-wrap">
@@ -75,68 +75,20 @@ const SideBar = React.createClass({
                             <span>Catalogy</span>
                         </div>
                         <div className="nav-wrap w3-white ">
-                            {productTypes.map((item) => {
-                                return (<div className="nav-item">
-                                    <a className="item-wrap" href="#">
-                                        <div className="heading">{item.product_type_name}</div>
-                                        <div className="des">
-                                            Chuyên cung cấp The coconut tree (Cocos nucifera) is a member of the family Arecaceae (palm family) and the only species
+                            {!_.isEmpty(productTypes) && productTypes.map((item) => {
+                                return (
+                                    <div className="nav-item" key={item.product_type_id}>
+                                        <Link className="item-wrap" to={`/${item.product_type_id}/${item.product_type_name}`} >
+                                            <div className="heading">{item.product_type_name}</div>
+                                            <div className="des">
+                                                Chuyên cung cấp The coconut tree (Cocos nucifera) is a member of the family Arecaceae (palm family) and the only species
                                         of the genus Cocos. The term coconut can refer to the whole coconut palm or the seed,
                                         or the fruit, which, botanically, is a drupe, not a nut.
                                     </div>
-                                    </a>
-                                </div>)
+                                        </Link>
+                                    </div>
+                                )
                             })}
-                            <div className="nav-item">
-                                <a className="item-wrap" href="#">
-                                    <div className="heading">COCONUT WOOD</div>
-                                    <div className="des">
-                                        Chuyên cung cấp The coconut tree (Cocos nucifera) is a member of the family Arecaceae (palm family) and the only species
-                                        of the genus Cocos. The term coconut can refer to the whole coconut palm or the seed,
-                                        or the fruit, which, botanically, is a drupe, not a nut.
-                                    </div>
-                                </a>
-                            </div>
-                            <div className="nav-item">
-                                <a className="item-wrap" href="#">
-                                    <div className="heading">COCONUT OIL</div>
-                                    <div className="des">
-                                        The coconut tree (Cocos nucifera) is a member of the family Arecaceae (palm family) and the only species of the genus Cocos.
-                                        The term coconut can refer to the whole coconut palm or the seed, or the fruit, which,
-                                        botanically, is a drupe, not a nut.
-                                    </div>
-                                </a>
-                            </div>
-                            <div className="nav-item">
-                                <a className="item-wrap" href="#">
-                                    <div className="heading">COCONUT MASK</div>
-                                    <div className="des">
-                                        The coconut tree (Cocos nucifera) is a member of the family Arecaceae (palm family) and the only species of the genus Cocos.
-                                        The term coconut can refer to the whole coconut palm or the seed, or the fruit, which,
-                                        botanically, is a drupe, not a nut.
-                                    </div>
-                                </a>
-                            </div>
-                            <div className="nav-item">
-                                <a className="item-wrap" href="#">
-                                    <div className="heading">COCONUT SOAP</div>
-                                    <div className="des">
-                                        The coconut tree (Cocos nucifera) is a member of the family Arecaceae (palm family) and the only species of the genus Cocos.
-                                        The term coconut can refer to the whole coconut palm or the seed, or the fruit, which,
-                                        botanically, is a drupe, not a nut.
-                                    </div>
-                                </a>
-                            </div>
-                            <div className="nav-item">
-                                <a className="item-wrap" href="#">
-                                    <div className="heading">COCONUT OTHERS</div>
-                                    <div className="des">
-                                        The coconut tree (Cocos nucifera) is a member of the family Arecaceae (palm family) and the only species of the genus Cocos.
-                                        The term coconut can refer to the whole coconut palm or the seed, or the fruit, which,
-                                        botanically, is a drupe, not a nut.
-                                    </div>
-                                </a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -148,9 +100,11 @@ const SideBar = React.createClass({
 })
 
 export default connect((state) => {
-    const { productTypes } = state.entities
+    const { entities: { productTypes }, productTypeIds } = state
     return {
-        productTypes
+        productTypes: _.isEmpty(productTypeIds) ? [] : productTypeIds.map((id) => {
+            return productTypes[id]
+        })
     }
 }
 )(SideBar)

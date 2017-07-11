@@ -29,7 +29,7 @@ class App extends Component {
     return (
       <Provider store={store} >
         <BrowserRouter >
-          <Route path="/" component={AppIndex} />
+          <AppIndex />
         </BrowserRouter>
       </Provider>
     );
