@@ -1,7 +1,5 @@
 body {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+    position: relative;
 }
 
 .max-width-1600 {
@@ -20,7 +18,7 @@ img {
 }
 
 .scrollbar {
-    overflow-y: scroll;
+    overflow-y: unset;
 }
 
 .style-3::-webkit-scrollbar-track {
@@ -182,7 +180,8 @@ horizontaldrag>.w3-dropdown-hover:hover>.w3-dropdown-content {
 }
 
 body {
-    font-size: 12px;
+    font-size: 16px;
+    color: #757575;
     font-family: 'Nunito', sans-serif;
 }
 
@@ -190,15 +189,12 @@ body {
 /*navbar*/
 
 .hkmall .main-sidebar {
-    /*position: relative*/
-    /*padding-top: 150px;
-    padding-bottom: 150px;*/
-    position: absolute!important;
     width: 300px;
-    left: 0;
 }
 
-.hkmall .main-sidebar-wrap {}
+.hkmall .main-sidebar-wrap {
+    background-color: #fff;
+}
 
 .hkmall .nav-wrap {
     display: flex;
@@ -297,7 +293,6 @@ body {
     left: 300px;
     right: 0;
     height: 100%;
-    overflow-y: scroll;
 }
 
 @media (max-width: 992px) {

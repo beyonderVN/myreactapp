@@ -10,7 +10,7 @@ class ProductListByType extends React.Component {
         const { productList } = this.props
         console.log(productList);
         return (
-            <div className="main-content w3-container w3-card-4">
+            <div className="main-content w3-row-padding">
                 {
                     productList.map((item) => (
                         <div key={item.product_id} className="w3-third w3-container w3-margin-bottom grid-item ">

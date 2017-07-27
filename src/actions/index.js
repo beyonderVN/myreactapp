@@ -15,6 +15,7 @@ export const STARRED = createRequestTypes('STARRED')
 
 export const LOAD_APP = 'LOAD_APP'
 export const LOAD_PRODUCT_LIST_BY_TYPE = 'LOAD_PRODUCT_LIST_BY_TYPE'
+export const SIDEBAR_TOGGLE = 'SIDEBAR_TOGGLE'
 
 function action(type, payload = {}) {
     return { type, ...payload }
@@ -35,3 +36,4 @@ export const product = {
 
 export const loadApp = (login, requiredFields = []) => action(LOAD_APP, { login, requiredFields })
 export const loadProductListbyType = (login, requiredFields = []) => action(LOAD_PRODUCT_LIST_BY_TYPE, { login, requiredFields })
+export const sidebarToggle = () => action(SIDEBAR_TOGGLE)

@@ -11,10 +11,21 @@ function entities(state = { user: 'admin', productTypes: {}, products: {} }, act
     }
     return state
 }
+
 function user(state = 'admin', action) {
     return state
 }
-
+const curriculumVitae = (state = {
+    fullname: 'Ngo Hoang Long',
+    dateOfBirth: '24/02/1990',
+    sex: 'male',
+    address: 'Ho Chi Minh City',
+    phoneNumber: '01646202046',
+    email: 'ngohoanglongptit@gmail.com',
+    career: 'developer'
+}, action) => {
+    return state
+}
 const productTypeIds = (state = [], action) => {
     if (action.type === ActionTypes.PRODUCT_TYPE.SUCCESS) {
         console.log(action.response.result);
@@ -34,11 +45,23 @@ const pagination = combineReducers({
         ]
     })
 })
+
+// sidebar
+const isSidebarVisible = (state = false, action) => {
+    if (action.type === ActionTypes.SIDEBAR_TOGGLE) {
+        return !state
+    }
+    return state
+}
+// 
+
 const rootReducer = combineReducers({
+    curriculumVitae,
     entities,
     user,
     productTypeIds,
-    pagination
+    pagination,
+    isSidebarVisible
     // pagination
 })
 

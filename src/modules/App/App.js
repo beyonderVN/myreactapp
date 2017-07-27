@@ -5,6 +5,8 @@ import Header from './Header/Header'
 import Footer from './Footer/Footer'
 import ProductListByType from './Container/ProductListByType'
 import About from './Container/About'
+import Home from './Container/Home/home'
+import WorkExperience from './Container/WorkExperience';
 import { api } from '../../services'
 import { loadApp } from '../../actions'
 import { Switch, Route } from 'react-router-dom';
@@ -27,12 +29,16 @@ class App extends React.Component {
             <div className="">
 
                 <Route path="/" component={Sidebar} />
-                <div id="main" className="w3-main scrollbar style-3">
-                    <div className="main-wrap">
+                <div id="main" className="w3-main ">
+                    <div className="main-wrap w3-card-4">
                         <Route path="/" component={Header} />
+
                         <Switch >
-                            <Route path="/:producttypeid/:producttypename" component={ProductListByType} />
+                            <Route path="/product/:producttypeid/:producttypename" component={ProductListByType} />
                             <Route path="/about" component={About} />
+
+                            <Route path="/" component={Home} />
+                                
                         </Switch>
 
                         <Route path="/" component={Footer} />
