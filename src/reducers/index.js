@@ -12,7 +12,7 @@ function entities(state = { user: 'admin', productTypes: {}, products: {} }, act
     return state
 }
 
-function user(state = 'admin', action) {
+function user(state = null, action) {
     return state
 }
 const curriculumVitae = (state = {

@@ -1,13 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import WorkExperience from '../WorkExperience';
-const Home = ({ children}) => {
+import Education from '../Education';
+const Home = ({ children }) => {
 
     return (
         <div className="main-content w3-row-padding">
-            <WorkExperience/>
-            <WorkExperience/>
-            <WorkExperience/>
+            <WorkExperience />
+            <Education />
+            <WorkExperience />
         </div>
     )
 

@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash'
 import { Link } from 'react-router-dom'
-import { sidebarToggle } from '../../../actions'
+import { sidebarToggle, loadApp } from '../../../actions'
 const SideBar = React.createClass({
     _handleSpy(event) {
 
@@ -33,6 +33,7 @@ const SideBar = React.createClass({
         })
     },
     componentDidMount() {
+        this.props.loadApp()
         this.lastScrollTop = 0;
         this.onEvent()
     },
@@ -74,10 +75,12 @@ const SideBar = React.createClass({
                     </div>
                     <div className="w3-bar-block">
                         <a href="#portfolio" onclick="w3_close()" className="w3-bar-item w3-button w3-padding w3-text-teal">PORTFOLIO</a>
-                        <a href="#about" onclick="w3_close()" className="w3-bar-item w3-button w3-padding">ABOUT</a>
+                        <a href="/about" onclick="w3_close()" className="w3-bar-item w3-button w3-padding">ABOUT</a>
+                        <Link className="w3-bar-item w3-button w3-padding" to={`/education`} >EDUCATION</Link>
+                        <Link className="w3-bar-item w3-button w3-padding" to={`/workexprerience`} >WORK EXPOERIENCE</Link>
                         <a href="#contact" onclick="w3_close()" className="w3-bar-item w3-button w3-padding">CONTACT</a>
                     </div>
-                    <div className="w3-container">          <hr /></div>
+                    <div className="w3-container"><hr /></div>
                     <div className="w3-container">
                         <p className="w3-large"><b><i className="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Skills</b></p>
                         <span className="w3-tag w3-teal w3-round w3-margin-bottom w3-margin-right">HTML/HTML5</span>
@@ -102,7 +105,7 @@ const SideBar = React.createClass({
                             {!_.isEmpty(productTypes) && productTypes.map((item) => {
                                 return (
                                     <div className="nav-item" key={item.product_type_id}>
-                                        <Link className="item-wrap" to={`/${item.product_type_id}/${item.product_type_name}`} >
+                                        <Link className="item-wrap" to={`/product/${item.product_type_id}/${item.product_type_name}`} >
                                             <div className="heading">{item.product_type_name}</div>
                                             <div className="des">
                                                 Chuyên cung cấp The coconut tree (Cocos nucifera) is a member of the family Arecaceae (palm family) and the only species
@@ -143,6 +146,7 @@ export default connect((state) => {
     }
 },
     {
-        sidebarToggle
+        sidebarToggle,
+        loadApp
     }
 )(SideBar)

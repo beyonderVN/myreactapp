@@ -7,38 +7,35 @@ import ProductListByType from './Container/ProductListByType'
 import About from './Container/About'
 import Home from './Container/Home/home'
 import WorkExperience from './Container/WorkExperience';
-import { api } from '../../services'
-import { loadApp } from '../../actions'
+import Education from './Container/Education';
 import { Switch, Route } from 'react-router-dom';
 
-class App extends React.Component {
-
-    getInitialState() {
+const requiredAuthorize = (Component) => {
+    const AuthenticationComponent = ({ user }) => {
+        return user ? <Component {...this.props} /> : <div>you are not login<button>Login</button>></div>
+    }
+    return connect((rootState) => {
         return {
-            scrollIndex: 0,
+            user: rootState.user
         }
     }
-    componentWillMount() {
-        this.props.loadApp(this.props.login)
-    }
-    componentDidMount() {
-
-    }
-    render() {
-        return (
-            <div className="">
-
+    )(AuthenticationComponent)
+}
+const Routes = () =>
+    <Switch >
+        <Route path="/isRequiredLogin" component={requiredAuthorize(About)} />
+        <Route path="/about" component={About} />
+        <Route path="/" >
+            <div>
                 <Route path="/" component={Sidebar} />
                 <div id="main" className="w3-main ">
                     <div className="main-wrap w3-card-4">
                         <Route path="/" component={Header} />
-
                         <Switch >
                             <Route path="/product/:producttypeid/:producttypename" component={ProductListByType} />
-                            <Route path="/about" component={About} />
-
+                            <Route path="/education" component={Education} />
+                            <Route path="/workexperience" component={WorkExperience} />
                             <Route path="/" component={Home} />
-                                
                         </Switch>
 
                         <Route path="/" component={Footer} />
@@ -46,19 +43,8 @@ class App extends React.Component {
 
                 </div>
             </div>
-        )
+        </Route>
+    </Switch>
 
-    }
-}
-export default connect(
-    (state) => {
-        const { user } = state
-        console.log(user);
-        return {
-            login: user
-        }
-    },
-    {
-        loadApp
-    }
-)(App)
+export default Routes
+
