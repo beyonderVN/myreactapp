@@ -74,10 +74,11 @@ const SideBar = React.createClass({
                         <hr />
                     </div>
                     <div className="w3-bar-block">
+                        <Link className="w3-bar-item w3-button w3-padding" to={`/`} >HOME</Link>
                         <a href="#portfolio" onclick="w3_close()" className="w3-bar-item w3-button w3-padding w3-text-teal">PORTFOLIO</a>
                         <a href="/about" onclick="w3_close()" className="w3-bar-item w3-button w3-padding">ABOUT</a>
                         <Link className="w3-bar-item w3-button w3-padding" to={`/education`} >EDUCATION</Link>
-                        <Link className="w3-bar-item w3-button w3-padding" to={`/workexprerience`} >WORK EXPOERIENCE</Link>
+                        <Link className="w3-bar-item w3-button w3-padding" to={`/workexperience`} >WORK EXPERIENCE</Link>
                         <a href="#contact" onclick="w3_close()" className="w3-bar-item w3-button w3-padding">CONTACT</a>
                     </div>
                     <div className="w3-container"><hr /></div>

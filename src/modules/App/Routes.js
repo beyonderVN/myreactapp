@@ -9,7 +9,7 @@ import Home from './Container/Home/home'
 import WorkExperience from './Container/WorkExperience';
 import Education from './Container/Education';
 import { Switch, Route } from 'react-router-dom';
-
+import Content from './Container/Content';
 const requiredAuthorize = (Component) => {
     const AuthenticationComponent = ({ user }) => {
         return user ? <Component {...this.props} /> : <div>you are not login<button>Login</button>></div>
@@ -31,13 +31,15 @@ const Routes = () =>
                 <div id="main" className="w3-main ">
                     <div className="main-wrap w3-card-4">
                         <Route path="/" component={Header} />
-                        <Switch >
-                            <Route path="/product/:producttypeid/:producttypename" component={ProductListByType} />
-                            <Route path="/education" component={Education} />
-                            <Route path="/workexperience" component={WorkExperience} />
-                            <Route path="/" component={Home} />
-                        </Switch>
-
+                        <Content>
+                            <Switch >
+                                <Route path="/" exact={true} component={Home} />
+                                <Route path="/product/:producttypeid/:producttypename" component={ProductListByType} />
+                                <Route path="/education" component={Education} />
+                                <Route path="/workexperience" component={WorkExperience} />
+                                <Route component={() => <div>PAGE NOT FOUND</div>} />
+                            </Switch>
+                        </Content>
                         <Route path="/" component={Footer} />
                     </div>
 
