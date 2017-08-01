@@ -75,10 +75,10 @@ const SideBar = React.createClass({
                     </div>
                     <div className="w3-bar-block">
                         <Link className="w3-bar-item w3-button w3-padding" to={`/`} >HOME</Link>
-                        <a href="#portfolio" onclick="w3_close()" className="w3-bar-item w3-button w3-padding w3-text-teal">PORTFOLIO</a>
-                        <a href="/about" onclick="w3_close()" className="w3-bar-item w3-button w3-padding">ABOUT</a>
+                        <Link className="w3-bar-item w3-button w3-padding" to={`/about`} >ABOUT</Link>
                         <Link className="w3-bar-item w3-button w3-padding" to={`/education`} >EDUCATION</Link>
                         <Link className="w3-bar-item w3-button w3-padding" to={`/workexperience`} >WORK EXPERIENCE</Link>
+                        <Link className="w3-bar-item w3-button w3-padding" to={`/exmples/preventingtransitions`} >PreventingTransitions Example</Link>
                         <a href="#contact" onclick="w3_close()" className="w3-bar-item w3-button w3-padding">CONTACT</a>
                     </div>
                     <div className="w3-container"><hr /></div>
@@ -110,9 +110,9 @@ const SideBar = React.createClass({
                                             <div className="heading">{item.product_type_name}</div>
                                             <div className="des">
                                                 Chuyên cung cấp The coconut tree (Cocos nucifera) is a member of the family Arecaceae (palm family) and the only species
-                                        of the genus Cocos. The term coconut can refer to the whole coconut palm or the seed,
-                                        or the fruit, which, botanically, is a drupe, not a nut.
-                                    </div>
+                                                of the genus Cocos. The term coconut can refer to the whole coconut palm or the seed,
+                                                or the fruit, which, botanically, is a drupe, not a nut.
+                                            </div>
                                         </Link>
                                     </div>
                                 )
