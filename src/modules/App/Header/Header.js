@@ -1,11 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { sidebarToggle } from '../../../actions'
+import Slider from '../Components/Slider/Slider'
+
 const Header = ({ sidebarToggle }) => {
 
     return (
-        <header id="portfolio" className="header-main w3-border-bottom">
-
+        <header className="header-main w3-border-bottom">
+            <Slider />
             <div className="w3-bar">
                 <div className="w3-bar-left">
                     <span className="w3-bar-item w3-button w3-hide-large w3-xxlarge w3-hover-text-grey w3-margin-right" onClick={sidebarToggle}><i className="fa fa-bars"></i></span>
@@ -17,6 +19,7 @@ const Header = ({ sidebarToggle }) => {
                     <input type="text" className="w3-bar-item w3-input w3-white w3-hide-small w3-right search-input" placeholder="Search..." />
                 </div>
             </div>
+
         </header>
     )
 }

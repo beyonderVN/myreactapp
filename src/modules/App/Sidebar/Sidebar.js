@@ -79,6 +79,7 @@ const SideBar = React.createClass({
                         <Link className="w3-bar-item w3-button w3-padding" to={`/education`} >EDUCATION</Link>
                         <Link className="w3-bar-item w3-button w3-padding" to={`/workexperience`} >WORK EXPERIENCE</Link>
                         <Link className="w3-bar-item w3-button w3-padding" to={`/exmples/preventingtransitions`} >PreventingTransitions Example</Link>
+                        <Link className="w3-bar-item w3-button w3-padding" to={`/exmples/ReselectExample`} >Reselect Example</Link>
                         <a href="#contact" onclick="w3_close()" className="w3-bar-item w3-button w3-padding">CONTACT</a>
                     </div>
                     <div className="w3-container"><hr /></div>

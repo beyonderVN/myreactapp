@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from './index.css';
+import './SkeletonLoading.css';
 
 export { default as SkeletonTheme } from './skeleton-theme';
 

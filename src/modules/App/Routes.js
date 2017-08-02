@@ -17,7 +17,7 @@ import asyncComponent from '../App/Components/AsyncComponent';
 import SkeletonLoading from '../App/Components/SkeletonLoading';
 
 const renderLoadingHome = () => {
-    return <div className="w3-container w3-card-2 w3-white w3-margin-bottom w3-padding" style={{ paddingBottom: '40px' }}>
+    return <div className="w3-container w3-card-2 w3-white w3-margin-bottom w3-padding" style={{ height: '600px' }}>
         <h1><SkeletonLoading /></h1>
         <SkeletonLoading count={6} />
     </div>
@@ -27,6 +27,7 @@ const AsyncAbout = asyncComponent(() => import('./Container/About'), renderLoadi
 const AsyncHome = asyncComponent(() => import('./Container/Home/home'), renderLoadingHome);
 const AsyncWorkExperience = asyncComponent(() => import('./Container/WorkExperience'), renderLoadingHome);
 const AsyncEducation = asyncComponent(() => import('./Container/Education'), renderLoadingHome);
+const AsyncReselectExample = asyncComponent(() => import('./Container/Example/ReselectExample/ReselectExample.js'), renderLoadingHome);
 
 
 const requiredAuthorize = (Component) => {
@@ -58,7 +59,7 @@ const Routes = () =>
                                 <Route path="/education" component={AsyncEducation} />
                                 <Route path="/workexperience" component={AsyncWorkExperience} />
                                 <Route path="/exmples/preventingtransitions" component={PreventingTransitions} />
-
+                                <Route path="/exmples/ReselectExample" component={AsyncReselectExample} />
                                 <Route component={() => <div>PAGE NOT FOUND</div>} />
                             </Switch>
                         </Content>

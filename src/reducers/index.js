@@ -1,6 +1,7 @@
 import * as ActionTypes from '../actions'
 import { combineReducers } from 'redux'
 import paginate from './paginate'
+import examples from './examples'
 import _ from 'lodash'
 
 // Updates an entity cache in response to any action with response.entities.
@@ -61,11 +62,13 @@ const rootReducer = combineReducers({
     user,
     productTypeIds,
     pagination,
-    isSidebarVisible
-    // pagination
+    isSidebarVisible,
+    examples
 })
 
 export default rootReducer
+
+
 // selector
 export const getProductTypes = (state) => {
     return state.entities.productTypes
