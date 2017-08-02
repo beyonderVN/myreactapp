@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactDOM } from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash'
 import { Link } from 'react-router-dom'
@@ -6,6 +6,9 @@ import { sidebarToggle, loadApp } from '../../../actions'
 const SideBar = React.createClass({
     _handleSpy(event) {
 
+        var rect = ReactDOM.findDOMNode(this)
+            .getBoundingClientRect()
+        console.log('rect', rect);
         let scroller = document.querySelector('#mySidebar')
         let scrollTop = event.target.scrollTop
         let scrollUp = this.lastScrollTop > scrollTop
