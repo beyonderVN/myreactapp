@@ -36,26 +36,10 @@
     You need to enable JavaScript to run this app.
   </noscript>
   <div id="root"></div>
-  <script>
-    // Script to open and close sidebar
-    function w3_open() {
-      document.getElementById("mySidebar").style.display = "block";
-      document.getElementById("myOverlay").style.display = "block";
-    }
 
-    function w3_close() {
-      document.getElementById("mySidebar").style.display = "none";
-      document.getElementById("myOverlay").style.display = "none";
-    }
-  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.js"></script>
-  <script>
-    $('#main').scroll(function () {
-      console.log('SCROLL BODY');
-      $('#mySidebar').scrollTop($(this).scrollTop());
-    });
-  </script>
+
 </body>
 
 </html>

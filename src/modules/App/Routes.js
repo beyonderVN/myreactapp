@@ -16,8 +16,6 @@ import asyncComponent from '../App/Components/AsyncComponent';
 
 import SkeletonLoading from '../App/Components/SkeletonLoading';
 
-import Affix from 'react-affixed';
-
 const renderLoadingHome = () => {
     return <div className="w3-container w3-card-2 w3-white w3-margin-bottom w3-padding" style={{ height: '600px' }}>
         <h1><SkeletonLoading /></h1>
@@ -46,6 +44,7 @@ const requiredAuthorize = (Component) => {
 class Routes extends React.Component {
     render() {
         return <Switch >
+
             <Route path="/isRequiredLogin" component={requiredAuthorize(AsyncAbout)} />
             <Route path="/about" component={AsyncAbout} />
             <Route path="/" >
@@ -56,26 +55,16 @@ class Routes extends React.Component {
                             <Route path="/" component={Header} />
                             <Content ref="content" >
                                 <ScrollTop />
-                                <div className="w3-threequarter">
-                                    <Switch>
-                                        <Route path="/" exact component={AsyncHome} />
-                                        <Route path="/product/:producttypeid/:producttypename" component={ProductListByType} />
-                                        <Route path="/education" component={AsyncEducation} />
-                                        <Route path="/workexperience" component={AsyncWorkExperience} />
-                                        <Route path="/exmples/preventingtransitions" component={PreventingTransitions} />
-                                        <Route path="/exmples/ReselectExample" component={AsyncReselectExample} />
-                                        <Route component={() => <div>PAGE NOT FOUND</div>} />
-                                    </Switch>
-                                </div>
-                                <div className="w3-quarter w3-animate-zoom w3-hide-small">
+                                <Switch>
+                                    <Route path="/" exact component={AsyncHome} />
+                                    <Route path="/product/:producttypeid/:producttypename" component={ProductListByType} />
+                                    <Route path="/education" component={AsyncEducation} />
+                                    <Route path="/workexperience" component={AsyncWorkExperience} />
+                                    <Route path="/exmples/preventingtransitions" component={PreventingTransitions} />
+                                    <Route path="/exmples/ReselectExample" component={AsyncReselectExample} />
+                                    <Route component={() => <div>PAGE NOT FOUND</div>} />
+                                </Switch>
 
-                                    <div className="w3-container w3-card-2 w3-white w3-margin-bottom" style={{ height: '300px' }}>
-                                        <Affix container={this.refs.content}>
-                                            <h1>hello, react-affixed</h1>
-                                        </Affix>
-                                        <h2>About</h2>
-                                    </div>
-                                </div>
                             </Content>
                             <Route path="/" component={Footer} />
                         </div>
